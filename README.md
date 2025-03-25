@@ -8,7 +8,11 @@ This is the project work for course Ohjelmistotekniikka
 [link to the folder laskarit](laskarit/)
 
 **Documentation**
+
+
 [link to Specification document](dokumentaatio/specification.md)
+
+
 [link to Working hour document](dokumentaatio/workhour.md)
 
 
