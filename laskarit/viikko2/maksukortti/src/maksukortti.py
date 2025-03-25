@@ -1,12 +1,12 @@
-# aterioiden hinnat ovat senteissä
+# aterioiden hinnat ovat senteissï¿½
 EDULLINEN = 250
 MAUKAS = 400
 
-# HUOM: Kaikki raha-arvot, kuten maksukortin saldo ja aterioiden hinnat ovat senteissä. 
-# Harjoitustyössä muuttujat, luokat ja metodit kirjoitetaan englanniksi vaikka kurssimateriaalissa onkin luettavuuden vuoksi käytetty suomenkielisiä nimiä.)
+# HUOM: Kaikki raha-arvot, kuten maksukortin saldo ja aterioiden hinnat ovat senteissï¿½. 
+# Harjoitustyï¿½ssï¿½ muuttujat, luokat ja metodit kirjoitetaan englanniksi vaikka kurssimateriaalissa onkin luettavuuden vuoksi kï¿½ytetty suomenkielisiï¿½ nimiï¿½.)
 class Maksukortti:
     def __init__(self, saldo):
-        # saldo on senteissä
+        # saldo on senteissï¿½
         self.saldo = saldo
 
     def syo_edullisesti(self):
