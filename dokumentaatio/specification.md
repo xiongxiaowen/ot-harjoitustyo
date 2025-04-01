@@ -51,7 +51,7 @@ Own profile; View cash register balance, View the amount of transaction, View th
 **Further development**
 - A user friendly GUI
 - User can modify own profile
-- User can delete own account. 
+- Customer as a User can delete own account. 
 - A user friendly dashboard to view the balance, the amount of transaction and the amount of purchases.
 - Apply discounts for customers during transactions. Customer paying with the membership payment card can receive fixed percentage discounts.
 - Transaction will be declined, if no sufficient money in card.

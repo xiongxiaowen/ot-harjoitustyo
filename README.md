@@ -1,11 +1,10 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-This is the project work for course Ohjelmistotekniikka
+This is the project work for course Ohjelmistotekniikka.
 
-**use 2 stars to bold the text**
-*use 1 star to get italicized text*
+**more text will be added**
+*more text will be added*
 
-[link to the folder laskarit](laskarit/)
 
 **Documentation**
 
@@ -14,5 +13,11 @@ This is the project work for course Ohjelmistotekniikka
 
 
 [link to Working hour document](dokumentaatio/workhour.md)
+
+
+[link to Architecture Description document](dokumentaatio/architecture.md)
+
+
+[link to changelog document](dokumentaatio/changelog.md)
 
 
