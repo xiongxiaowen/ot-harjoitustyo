@@ -5,6 +5,8 @@ from src.ui.customer_view import open_customer_dashboard
 from src.ui.storekeeper_view import open_storekeeper_dashboard
 from src.repositories.user_repository import UserRepository
 
+
+
 def open_login_view():
     def handle_login():
         username = username_entry.get()
@@ -19,9 +21,7 @@ def open_login_view():
                     open_customer_dashboard(user)
                 else:
                     open_storekeeper_dashboard(user)
-            else:
-                messagebox.showerror("Login Failed", "Invalid credentials or role")
-        except InvalidCredentialsError as e:
+        except ValueError as e:
             messagebox.showerror("Login Failed", str(e))
 
     def handle_register():
@@ -29,8 +29,13 @@ def open_login_view():
         password = password_entry.get()
         role = role_var.get().lower()
 
+        user = user_service.create_user(username, password, role)
         if user_service.create_user(username, password, role):
             messagebox.showinfo("Registration", "User registered successfully!")
+            if role == "customer":
+                open_customer_dashboard(user)  # open_customer_dashboard(user) function will be triggered after successful registration
+            else:
+                messagebox.showinfo("Info", "Storekeeper role registered, please log in.")
         else:
             messagebox.showerror("Error", "User already exists")
 
