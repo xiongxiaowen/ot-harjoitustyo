@@ -1,7 +1,7 @@
 from src.models.user import User
 
 class UserRepository: 
-    def __init_(self):
+    def __init__(self):
         self.users = {}
 
     #find a user by username

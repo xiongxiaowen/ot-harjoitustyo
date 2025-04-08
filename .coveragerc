@@ -1,0 +1,12 @@
+[run]
+branch = True
+source =
+    src/models
+    src/repositories
+    src/services
+
+[report]
+omit =
+    */tests/*
+    */ui/*
+    */__init__.py

@@ -2,8 +2,10 @@
 
 This is the project work for course Ohjelmistotekniikka.
 
-**more text will be added**
-*more text will be added*
+**Membership payment card project description**
+
+
+The application is built to allow storekeepers and staff to offer a membership payment card solution to customers, who can benefit discounts by using the membership payment card solution. It helps to retain long-term customer loyalty, provides user-friendly cash and card payment experience, support customers to keep track of completed purchases, and streamline store keeper's transaction management.
 
 
 **Documentation**
@@ -21,3 +23,35 @@ This is the project work for course Ohjelmistotekniikka.
 [link to changelog document](dokumentaatio/changelog.md)
 
 
+**Installation**
+
+
+Install dependencies with the command:
+- poetry install
+
+
+Perform the required initialization with the command:
+- poetry run invoke build
+
+
+Start the application with the command:
+- poetry run invoke start
+
+
+**Command Line Functions**
+
+
+Running the Program with the command:
+- poetry run invoke start
+
+
+Testing are run with the command:
+- poetry run invoke test
+
+
+Test Coverage report can be generated  with the command:
+- poetry run invoke coverage-report (The report will be generated in the htmlcov directory)
+
+
+Pylint, run the checks defined in the .pylintrc file with the command:
+- poetry run invoke lint

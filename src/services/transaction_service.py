@@ -12,11 +12,15 @@ class TransactionService:
         #Load money to customer's card, amount can not be negative
         if amount <= 0:
             return False
-        return self.transaction_repository.update_customer_balance(customer, amount)
+        return self.transaction_repo.update_customer_balance(customer, amount)
 
     def process_payment(self, customer: User, amount: float, payment_method:str): 
         #payment from customer to storekeeper, reduce card balance, amount can not be negative
         #apply discount before updating balance 
+
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
+
         final_amount = amount
         if payment_method == "card": 
             final_amount = amount * (1 - self.discount)

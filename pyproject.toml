@@ -4,11 +4,17 @@ version = "0.1.0"
 description = ""
 authors = ["XiaowenOT <you@example.com>"]
 readme = "README.md"
+packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 cowsay = "^6.1"
+invoke = "^2.2.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.6"
+coverage = "^7.8.0"
 
 [build-system]
 requires = ["poetry-core"]

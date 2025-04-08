@@ -4,19 +4,19 @@ from src.models.user import User
 class UserService:
     def __init__(self, user_repository: UserRepository):
         self.user_repository = user_repository
+        self.current_user = None
 
     def login(self, username, password):
         #allow log in
         user = self.user_repository.find_user_by_username(username)
         if not user or user.password != password:
             raise InvalidCredentialsError("Invalid username or password")
-        if user and user.password == password:
-            return user
+        self.current_user = user
         return None
 
     def create_user(self, username, password):
         #allow create new user, if no existing user name
-        existing_user = self.user_repository.find_by_username(username)
+        existing_user = self.user_repository.find_user_by_username(username)
         if existing_user:
             raise UsernameExistsError(f"Username {username} already exists")
         user = self.user_repository.create_user(User(username, password))
@@ -31,4 +31,4 @@ class UserService:
     
     def logout(self):
         #Logout current user
-        pass
+        self.current_user = None

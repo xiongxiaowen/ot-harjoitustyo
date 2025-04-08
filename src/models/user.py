@@ -1,7 +1,15 @@
+#updated based on two user roles: customer and storekeeper (admin)
+
 class User:
-    def __init__(self, username, password):
+    def __init__(self, user_id: int = None, username: str = "", password: str = "", role: str = "customer", balance: float = 0.0):
+        self.user_id = user_id  #meaning "id" in DB
         self.username = username
         self.password = password
+        self.role = role  #customer or storekeeper(admin)
+        self.balance = balance
 
-    def create_account(self):
-        pass
+    def is_storekeeper(self) -> bool:
+        return self.role == "storekeeper"
+
+    def is_customer(self) -> bool:
+        return self.role == "customer"
