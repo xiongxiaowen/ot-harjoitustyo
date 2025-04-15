@@ -19,5 +19,8 @@
 | 8.4      | 3     |Repository subfolder user_repository.py and transaction_repository updated. Program can run.|
 | 8.4      | 4     |Pylint implemented, code rated at 6/10. Coverage report shows test coverage 32%|
 | Week 5   |       | |
-|Total hour|  44   | |
+|12.4      |7      |All functions connected with database, data can be inserted and fetched from database. Corrected show balance and show transaction history functionality errors|
+|13.4      |      | |
+| Week 6   |       | |
+|Total hour|  53  | |
 

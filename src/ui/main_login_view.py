@@ -6,42 +6,47 @@ from src.ui.storekeeper_view import open_storekeeper_dashboard
 from src.repositories.user_repository import UserRepository
 
 
-
 def open_login_view():
+    user_service = UserService(UserRepository())
+    root = tk.Tk()
+    root.geometry("600x500")
+    root.title("Membership Card Login")
+    user_repository = UserRepository()
+
     def handle_login():
         username = username_entry.get()
         password = password_entry.get()
-        role = role_var.get().lower()
+        user = user_service.login(username, password)
 
-        try:
-            user = user_service.login(username, password)
-            if user and user.role == role:
-                root.destroy()
-                if role == "customer":
-                    open_customer_dashboard(user)
-                else:
-                    open_storekeeper_dashboard(user)
-        except ValueError as e:
-            messagebox.showerror("Login Failed", str(e))
+        if user:
+            root.destroy()
+            if user.is_storekeeper():
+                open_storekeeper_dashboard(user)
+            else:
+                open_customer_dashboard(user)
+        else:
+            messagebox.showerror("Login Failed", "Invalid username or password.")
 
     def handle_register():
         username = username_entry.get()
         password = password_entry.get()
         role = role_var.get().lower()
 
-        user = user_service.create_user(username, password, role)
-        if user_service.create_user(username, password, role):
-            messagebox.showinfo("Registration", "User registered successfully!")
-            if role == "customer":
-                open_customer_dashboard(user)  # open_customer_dashboard(user) function will be triggered after successful registration
-            else:
-                messagebox.showinfo("Info", "Storekeeper role registered, please log in.")
-        else:
-            messagebox.showerror("Error", "User already exists")
+        if user_repository.find_user_by_username(username):
+            messagebox.showerror("Registration Failed", "Username already exists, please try with another username") #navigate to login
+            return
 
-    user_service = UserService(UserRepository())
-    root = tk.Tk()
-    root.title("Membership Card Login")
+        user = user_service.register(username, password, role)
+        if user:
+            messagebox.showinfo("Registration", "User registered successfully!")
+           
+            if role == "customer":
+                messagebox.showinfo("Registration as Customer", "Please log in as customer role")
+            else:
+                messagebox.showinfo("Registration as Storekeeper", "Please log in as storekeeper role")
+        else:
+            messagebox.showerror("Registration Failed", "Something went wrong during registration.")
+
 
     tk.Label(root, text="Welcome to the XX store membership card", font=("Arial", 16)).pack(pady=10)
 

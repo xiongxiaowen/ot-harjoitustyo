@@ -5,25 +5,24 @@ from src.services.transaction_service import TransactionService
 from src.repositories.user_repository import UserRepository
 from src.repositories.transaction_repository import TransactionRepository
 
+
 def open_customer_dashboard(user):
-    user_repository = UserRepository()
-    service = UserService(user_repository)
-    transaction_repo = TransactionRepository()
-    transaction_service = TransactionService(transaction_repo)
+    service = UserService(UserRepository())
+    transaction = TransactionService(TransactionRepository())
 
     #customer can logout
     def logout():
+        from src.ui.main_login_view import open_login_view
         window.destroy()
-        from ui.main_login_view import open_login_view
         open_login_view()
 
     #customer can delete account
     def delete_account():
+        from src.ui.main_login_view import open_login_view
         if messagebox.askyesno("Confirm", "Are you sure you want to delete your user account?"):
             service.delete_account(user.username)
             messagebox.showinfo("Deleted", "Account deleted successfully!")
             window.destroy()
-            from ui.main_login_view import open_login_view
             open_login_view()
     
     #customer can change password
@@ -35,6 +34,7 @@ def open_customer_dashboard(user):
     
     #creat the customer view screen
     window = tk.Tk()
+    window.geometry("600x500")
     window.title("Customer Dashboard")
 
     # add welcome message
@@ -48,13 +48,17 @@ def open_customer_dashboard(user):
 
     #show balance
     balance = service.get_balance(user.username)
-    tk.Label(window, text=f"Current Balance: euros {balance}", font=("Arial", 12)).pack(pady=10)
+    tk.Label(window, text=f"Current Balance: euros {balance:.2f}", font=("Arial", 12)).pack(pady=10)
 
     #show transaction history
-    tk.Label(window, text="Transaction History").pack()
-    transactions = transaction_service.get_customer_transactions(user.username)
-    for tx in transactions:
-        tk.Label(window, text=f"{tx['date']} - {tx['amount']} euros - {tx['method']}").pack()
+    tk.Label(window, text="Transaction History", font=("Arial", 12)).pack(pady=10)
+    transactions = transaction.get_customer_transactions(user.username)
+    if transactions:
+        for tx in transactions:
+            label = f"{tx['date']} - {tx['amount']} euros - {tx['method']}"
+            tk.Label(window, text=label).pack()
+    else:
+        tk.Label(window, text="No transactions found.").pack()
 
     #add buttons for logout and delete
     tk.Button(window, text="Log Out", command=logout).pack(side=tk.LEFT, padx=10, pady=20)
