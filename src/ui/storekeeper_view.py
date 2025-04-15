@@ -28,7 +28,7 @@ def open_storekeeper_dashboard(user):
             messagebox.showinfo("Transactions", "No transactions recorded.")
             return
         history_window = tk.Toplevel(window)
-        history_window.geometry("300x200")
+        history_window.geometry("400x300")
         history_window.title("All Transactions")
         for tx in transactions:
             label = f"{tx['date']} - User ID {tx['user_id']} - {tx['amount']} euros - {tx['payment_method']}"
@@ -61,7 +61,7 @@ def open_storekeeper_dashboard(user):
                 messagebox.showerror("Error", "Failed to load money to card.")
 
         load_window = tk.Toplevel(window) #loading operation window on top of the Dashboard
-        load_window.geometry("300x200")
+        load_window.geometry("400x300")
         load_window.title("Load Money to Card")
 
         tk.Label(load_window, text="Customer Username:").pack()
@@ -114,7 +114,7 @@ def open_storekeeper_dashboard(user):
 
         payment_window = tk.Toplevel(window)
         payment_window.title("Process Customer Payment")
-        payment_window.geometry("300x200")
+        payment_window.geometry("400x300")
 
         tk.Label(payment_window, text="Customer Username:").pack(pady=5)
         username_entry = tk.Entry(payment_window)

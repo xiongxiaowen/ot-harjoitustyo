@@ -37,31 +37,37 @@ def open_customer_dashboard(user):
     window.geometry("600x500")
     window.title("Customer Dashboard")
 
+    window.columnconfigure(0, weight=1)
+    window.columnconfigure(1, weight=1)
+
     # add welcome message
-    tk.Label(window, text=f"Welcome, {user.username}", font=("Arial", 14)).pack(pady=10)
+    tk.Label(window, text=f"Welcome, {user.username}", font=("Arial", 14, "bold")).grid(row=0, column=0, columnspan=2, pady=15)
 
     #allow change password
-    tk.Label(window, text="Change Password").pack()
+    tk.Label(window, text="Change Password", font=("Arial", 12, "bold")).grid(row=1, column=0, columnspan=2, pady=(5, 0))
     password_entry = tk.Entry(window, show="*")
-    password_entry.pack()
-    tk.Button(window, text="Update Password", command=change_password).pack(pady=5)
+    password_entry.grid(row=2, column=0, padx=(30, 10), pady=5, sticky="e")
+
+    tk.Button(window, text="Update Password", command=change_password).grid(row=2, column=1, padx=(10, 30), pady=5, sticky="w")
 
     #show balance
     balance = service.get_balance(user.username)
-    tk.Label(window, text=f"Current Balance: euros {balance:.2f}", font=("Arial", 12)).pack(pady=10)
+    tk.Label(window, text=f"Current Balance: euros {balance:.2f}", font=("Arial", 12, "bold")).grid(row=3, column=0, columnspan=2, pady=15)
+
 
     #show transaction history
-    tk.Label(window, text="Transaction History", font=("Arial", 12)).pack(pady=10)
+    tk.Label(window, text="Transaction History (Discount applied to card payment)", font=("Arial", 12, "bold")).grid(row=4, column=0, columnspan=2, pady=10)
     transactions = transaction.get_customer_transactions(user.username)
     if transactions:
-        for tx in transactions:
+        for idx, tx in enumerate(transactions):
             label = f"{tx['date']} - {tx['amount']} euros - {tx['method']}"
-            tk.Label(window, text=label).pack()
+            tk.Label(window, text=label, font=("Arial", 10)).grid(row=5 + idx, column=0, columnspan=2, sticky="w", padx=40)
     else:
-        tk.Label(window, text="No transactions found.").pack()
+        tk.Label(window, text="No transactions found.").grid(row=5, column=0, columnspan=2)
 
+    final_row = 5 + len(transactions) if transactions else 6
     #add buttons for logout and delete
-    tk.Button(window, text="Log Out", command=logout).pack(side=tk.LEFT, padx=10, pady=20)
-    tk.Button(window, text="Delete Account", command=delete_account).pack(side=tk.RIGHT, padx=10, pady=20)
+    tk.Button(window, text="Log Out", command=logout, width=15).grid(row=final_row + 1, column=0, pady=30)
+    tk.Button(window, text="Delete Account", command=delete_account, width=15).grid(row=final_row + 1, column=1, pady=30)
 
     window.mainloop()
