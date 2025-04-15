@@ -45,11 +45,11 @@ classDiagram
 
     class UI {
         +show_dashboard(): void
-        +show_payment_confirmation(): void
+        +redirect_process_payment_(): void
+        +redirect_load_money_to_card(): void
         +show_updated_balance(): void
         +display_transactions(): void
         +display_revenue_info(): void
-        +redirect_to_login(): void
         +redirect_to_home(): void
     }
 
@@ -57,28 +57,37 @@ classDiagram
         +login(username: str, password: str): User
         +create_user(username: str, password: str): User
         +delete_user(username: str): void
+        +change_password(username: str, password: str): void
+        +get_balance(username: str): void
         +logout(): void
     }
 
     class TransactionService {
-        +process_payment(payment_method: str): void
-        +load_money_to_card(customer: str, amount: float): void
-        +get_transaction_history(): List<Transaction>
+        +process_payment(username: str, amount: float, payment_method: str): void
+        +load_money_to_card(username: str, amount: float): void
+        +get_Customer_transaction_history(): List<Transaction>
+        +get_All_transaction_history(): List<Transaction>
         +get_sales_revenue(): float
+        +get_cash_register_balance():float
     }
 
     class UserRepository {
         +find_user_by_username(username: str): User
         +check_if_username_exists(username: str): bool
         +create_user(username: str, password: str): void
-        +remove_user(username: str): void
+        +delete_user(username: str): void
+        +update_password(username: str, password: str): void
+        +get_balance(username: str): void
+        +update_customer_balance(customer: str, amount: float): void
+        +get_all_customers(): void
     }
 
     class TransactionRepository {
         +save_transaction(transaction: Transaction): void
-        +update_customer_balance(customer: str, amount: float): void
+        +get_transactions_by_username(): void
         +fetch_transaction_data(): List<Transaction>
         +calculate_total_revenue(): float
+        +calculate_total_cashregister(): float
     }
 
     class Transaction {
@@ -130,7 +139,7 @@ sequenceDiagram
 
 
   %% Transaction Process
-  User->>UI: click "Pay with Card"
+  User->>UI: customer at store "Pay with Card"
   UI->>TransactionService: process_payment("payment_method")
   TransactionService->>TransactionRepository: save_transaction
   TransactionRepository-->>TransactionService: transaction saved
@@ -164,7 +173,7 @@ sequenceDiagram
 
 
   %% Storekeeper Loads Money to Customer Card
-  User->>UI: enter customer details and amount
+  User->>UI: enter customer username and amount
   UI->>TransactionService: load_money_to_card("customer", "amount")
   TransactionService->>TransactionRepository: update_customer_balance("customer", "amount")
   TransactionRepository-->>TransactionService: balance updated

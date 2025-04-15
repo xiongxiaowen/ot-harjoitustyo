@@ -12,4 +12,10 @@
 - 1 class's unit test was completed. 
 
 **Week 5**
-will be added during week 5.
+- Storekeeper new functions added: Process Payment pop window (handle payments by either card with discounts or by cash). 
+- Storekeeper: Load Money to Customer Card pop window improved. View Total Revenue, View Cash Register Balance and View All Transactions functions were corrected, being able to display numbers.
+- Storekeeper' Process Payment and Load Money to Customer Card operations can be correctly connected to customer's card balance and transaction history. 
+- Customer transaction history function can display transactions as desired. 
+- Customer and Storekeeper dashboard visual effects improved. 
+
+**Week 6**
