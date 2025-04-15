@@ -11,5 +11,9 @@ def lint(c):
     c.run("pylint src/models src/services src/repositories --rcfile=.pylintrc")
 
 @task
+def test(c):
+    c.run("coverage run --source=src -m unittest discover -s src/tests")
+
+@task
 def coverage_report(c):
     c.run("coverage report")

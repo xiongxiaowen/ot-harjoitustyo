@@ -55,6 +55,7 @@ Testing are run with the command:
 
 Test Coverage report can be generated  with the command:
 - poetry run invoke coverage-report (The report will be generated in the htmlcov directory)
+- poetry run coverage html (view HTML report)
 
 
 Pylint, run the checks defined in the .pylintrc file with the command:
