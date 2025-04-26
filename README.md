@@ -10,7 +10,7 @@ The application is built to allow storekeepers and staff to offer a membership p
 
 **Documentation**
 
-[link to User Instructions document](dokumentaatio/Instructions_for_use.md)
+[link to User Instructions document](dokumentaatio/Instructions.md)
 
 
 [link to Specification document](dokumentaatio/specification.md)
