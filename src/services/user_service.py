@@ -2,6 +2,9 @@ from src.repositories.user_repository import UserRepository
 from src.models.user import User
 
 class UserService:
+    """This class operates user related operations, incl. login, register, change password,
+    delete account, get balance and logout.
+    """
     def __init__(self, user_repository=None):
         self.user_repository = user_repository or UserRepository()
 

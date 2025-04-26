@@ -5,10 +5,12 @@ This is the project work for course Ohjelmistotekniikka.
 **Membership payment card project description**
 
 
-The application is built to allow storekeepers and staff to offer a membership payment card solution to customers, who can benefit discounts by using the membership payment card solution. It helps to retain long-term customer loyalty, provides user-friendly cash and card payment experience, support customers to keep track of completed purchases, and streamline store keeper's transaction management.
+The application is built to allow storekeepers and staff to offer a membership payment card solution to customers, who can benefit discounts by using the membership payment card solution. It helps to retain long-term customer loyalty, provides user-friendly cash and card payment experience, support customers to keep track of completed purchases, and streamline storekeeper's transaction management.
 
 
 **Documentation**
+
+[link to User Instructions document](dokumentaatio/Instructions_for_use.md)
 
 
 [link to Specification document](dokumentaatio/specification.md)

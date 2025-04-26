@@ -7,6 +7,9 @@ from src.repositories.user_repository import UserRepository
 
 
 def open_login_view():
+    """Create and display UI window with login and registration as the system home 
+    page, authenticate users, redirect users to correct dashboard based on registered user role.
+    """
     user_service = UserService(UserRepository())
     root = tk.Tk()
     root.geometry("600x500")
@@ -14,6 +17,9 @@ def open_login_view():
     user_repository = UserRepository()
 
     def handle_login():
+        """Authenticate user login through retriving username and password from user_repository. Redirect
+        user to the correct dashboard window, display error message if invalid login.
+        """
         username = username_entry.get()
         password = password_entry.get()
         user = user_service.login(username, password)
@@ -28,6 +34,9 @@ def open_login_view():
             messagebox.showerror("Login Failed", "Invalid username or password.")
 
     def handle_register():
+        """Handle registration and user account creation by generating username, password and role 
+        into user_repository if no existing. Guide users to login after successful registration.
+        """
         username = username_entry.get()
         password = password_entry.get()
         role = role_var.get().lower()
@@ -41,9 +50,9 @@ def open_login_view():
             messagebox.showinfo("Registration", "User registered successfully!")
            
             if role == "customer":
-                messagebox.showinfo("Registration as Customer", "Please log in as customer role")
+                messagebox.showinfo("Registration as Customer", "Now you can log in as customer role")
             else:
-                messagebox.showinfo("Registration as Storekeeper", "Please log in as storekeeper role")
+                messagebox.showinfo("Registration as Storekeeper", "Now you can log in as storekeeper role")
         else:
             messagebox.showerror("Registration Failed", "Something went wrong during registration.")
 

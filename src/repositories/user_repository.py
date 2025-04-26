@@ -3,6 +3,8 @@ from src.models.user import User
 from src.database_connection import get_database_connection
 
 class UserRepository: 
+    """_summary_
+    """
     def __init__(self):
         self._connection = get_database_connection()
 

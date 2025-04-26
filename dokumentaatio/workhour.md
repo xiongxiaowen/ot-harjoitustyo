@@ -22,12 +22,10 @@
 |12.4      |7      |All functions improved and connected with database, data can be inserted and fetched from database. Corrected show balance and show transaction history functionality errors|
 |15.4      |3      |Week 5 release created. update architecture diagrams. Run poetry run invoke lint, code rated at 7.36/10  |
 |15.4      |3      |continue unit testing, Coverage report shows test coverage 46%. Program tested again on Omnissa Horizon Client, working well with Cubbli Linux|
-
 | Week 6   |       | |
-|25.4      |3      |Week 6 release created. update architecture diagrams. Run poetry run invoke lint, code rated at ?/10  |
+|25.4      |3      |Function growth:  improve the keeper’s transaction history list by making User name visible on list. Week 6 release created.  Run poetry run invoke lint, code rated at ?/10  |
 |25.4      |3      |continue unit testing, Coverage report shows test coverage 86%. Program tested again on Omnissa Horizon Client, working well with Cubbli Linux|
-
+|26.4      |3      |Start documenting User Instructions and docstrings, etc.|
 | Week 7  |       | |
-
-|Total hour|  65  | |
+|Total hour|  68  | |
 

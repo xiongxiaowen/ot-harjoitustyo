@@ -5,6 +5,8 @@ Download the source code for the latest [release](https://github.com/xiongxiaowe
 Note: This program was developed on Windows, all commands mentioned in this program is based on Windows. Please use Linux command line if run on Linux. Program was tested every week on Omnissa Horizon Client, program can open and work well with Cubbli Linux.
 
 **Starting the program**
+
+
 Before starting the program, install the dependencies with the command: 
 - poetry install
 
@@ -18,12 +20,16 @@ Then start the program with the command:
 
 
 **Login**
+
+
 The application starts in the home page login view:
 ![](./kuvat/kayttoohje-kirjautuminen.png)
 
 Customer login to the application as a customer role. A storekeeper login as a storepeeker role, which allows to access data and operations as a admin, e.g. view registered customer list and customer's current balance; process payment, load money to customer card, view total revenue including both card and cash payment types; view cash balance (revenue via cash payment); view all customer transactions.
 
 **Creating a new user**
+
+
 Create for a customer
 - 
 - 

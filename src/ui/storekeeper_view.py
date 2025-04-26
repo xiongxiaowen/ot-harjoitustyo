@@ -7,6 +7,15 @@ from src.repositories.transaction_repository import TransactionRepository
 
 
 def open_storekeeper_dashboard(user):
+    """This is for building the storekeeper's UI where storekeeper all operations happen on this page
+
+    Args:
+        user (storekeeper): Admin role being able to process transactions and loading cards
+
+    Raises:
+        ValueError: _description_
+        ValueError: _description_
+    """
     user_service = UserService(UserRepository())
     transaction_service = TransactionService(TransactionRepository())
     user_repository = UserRepository()
@@ -31,7 +40,7 @@ def open_storekeeper_dashboard(user):
         history_window.geometry("400x300")
         history_window.title("All Transactions")
         for tx in transactions:
-            label = f"{tx['date']} - User ID {tx['user_id']} - {tx['amount']} euros - {tx['payment_method']}"
+            label = f"{tx['date']} - User ID {tx['user_id']} - User Name {tx['username']} - {tx['amount']} euros - {tx['payment_method']}"
             tk.Label(history_window, text=label).pack()
 
     # Load funds to customer

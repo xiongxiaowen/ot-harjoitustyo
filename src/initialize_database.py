@@ -3,12 +3,14 @@ import os
 from database_connection import get_database_connection
 
 DB_FILE = os.path.join(os.path.dirname(__file__), "membership_card.db")
-#Two tables will be needed, one for user data, one for payment transactions
 
 def create_tables(connection):
+        """Create databased tables. Two tables needed, one for user data, one for payment transactions.
+        set up foreign key relationship between the transactions and users tables.
+        """
         cursor = connection.cursor()
 
-        cursor.execute("PRAGMA foreign_keys = ON;") #fogeign key needed between 2 tables
+        cursor.execute("PRAGMA foreign_keys = ON;") 
 
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
