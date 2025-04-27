@@ -2,7 +2,7 @@ import sqlite3
 from src.models.user import User
 from src.database_connection import get_database_connection
 
-class UserRepository: 
+class UserRepository:
     """_summary_
     """
     def __init__(self):
@@ -21,8 +21,10 @@ class UserRepository:
     def create_user(self, user):
         try:
             cursor = self._connection.cursor()
-            cursor.execute("INSERT INTO users (username, password, role, balance) VALUES (?, ?, ?, ?)",
-                           (user.username, user.password, user.role, user.balance))
+            cursor.execute(
+                "INSERT INTO users (username, password, role, balance) VALUES (?, ?, ?, ?)",
+                (user.username, user.password, user.role, user.balance)
+                )
             self._connection.commit()
             return True
         except sqlite3.IntegrityError:
@@ -48,7 +50,9 @@ class UserRepository:
 
     def update_balance(self, username, amount):
         cursor = self._connection.cursor()
-        cursor.execute("UPDATE users SET balance = balance + ? WHERE username = ?", (amount, username))
+        cursor.execute("UPDATE users SET balance = balance + ? WHERE username = ?",
+                       (amount, username)
+                       )
         self._connection.commit()
         return True
 

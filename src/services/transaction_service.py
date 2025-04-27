@@ -1,8 +1,8 @@
-from src.models.user import User
+from datetime import datetime
 from src.repositories.transaction_repository import TransactionRepository
 from src.models.transaction import Transaction
 from src.repositories.user_repository import UserRepository
-from datetime import datetime
+
 
 class TransactionService:
     """Service layer for processing all transaction business logics.
@@ -26,7 +26,7 @@ class TransactionService:
             return False
         return self.user_repo.update_balance(username, amount)
 
-    def process_payment(self, username, amount, payment_method): 
+    def process_payment(self, username, amount, payment_method):
         """Process payment operations by storekeeper. 
         
         Applies discount to card payment, check sufficient balance, store payment transaction
@@ -49,7 +49,7 @@ class TransactionService:
             raise ValueError("Amount must be positive")
 
         final_amount = amount
-        if payment_method == "card": 
+        if payment_method == "card":
             final_amount = amount * (1 - self.discount)
             balance = self.user_repo.get_balance(username)
             if balance < final_amount:
@@ -60,7 +60,12 @@ class TransactionService:
 
         #create and save the transaction as final amount
         user = self.user_repo.find_user_by_username(username)
-        transaction = Transaction(user.user_id, final_amount, payment_method, datetime.now().strftime("%Y-%m-%d %H:%M"))
+        transaction = Transaction(
+            user.user_id,
+            final_amount,
+            payment_method,
+            datetime.now().strftime("%Y-%m-%d %H:%M")
+            )
         self.transaction_repo.save_transaction(transaction)
         return transaction
 

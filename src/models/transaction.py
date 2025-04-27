@@ -1,4 +1,4 @@
-#improvement from previous codes: added date for storing transaction history
+"""Creat transaction to handle all business logics relating to transaction history"""
 
 class Transaction:
     def __init__(self, user_id, amount, payment_method, date):

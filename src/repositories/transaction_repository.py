@@ -1,4 +1,3 @@
-import sqlite3
 from src.models.transaction import Transaction
 from src.database_connection import get_database_connection
 
@@ -12,14 +11,22 @@ class TransactionRepository:
         cursor.execute("""
             INSERT INTO transactions (user_id, amount, payment_method, date)
             VALUES (?, ?, ?, ?)
-        """, (transaction.user_id, transaction.amount, transaction.payment_method, transaction.date))
+        """, (transaction.user_id,
+              transaction.amount,
+              transaction.payment_method,
+              transaction.date)
+              )
         self._connection.commit()
 
 
     def get_transactions_by_username(self, username):
         """Get all transactions based on specific username."""
         cursor = self._connection.cursor()
-        cursor.execute("SELECT t.date, t.amount, t.payment_method FROM transactions t JOIN users u ON t.user_id = u.id WHERE u.username = ? ORDER BY t.date DESC", (username,))
+        cursor.execute(
+            "SELECT t.date, t.amount, t.payment_method FROM transactions t " \
+            "JOIN users u ON t.user_id = u.id WHERE u.username = ? ORDER BY t.date DESC",
+            (username,)
+            )
         return [{"date": row[0], "amount": row[1], "method": row[2]} for row in cursor.fetchall()]
 
 
@@ -67,6 +74,3 @@ class TransactionRepository:
         """)
         row = cursor.fetchone()
         return row["total"] if row["total"] else 0.0
-
-
-

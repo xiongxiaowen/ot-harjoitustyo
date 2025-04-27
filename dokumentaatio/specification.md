@@ -8,7 +8,7 @@ The application allows storekeeper and staff to offer a membership payment card 
 **Users**
 
 
-The application has a user role, normal end users as customers. A payment card store's storekeeper role as centralized admin will be added to the application.
+The application has a user role, normal end users as customers. A payment card store's storekeeper role as centralized admin was added to the application in the later phase.
 
 **User interface**
 
@@ -17,13 +17,13 @@ UI for customers
 - Home Screen elements (DONE)
 
 
-Own profile; View payment balance; View past purchase value.(DONE)
+Own profile (view own username, change password); View payment card balance; View past purchase history (transaction list).(DONE)
 
 UI for storekeeper
 - Home Screen elements (DONE)
 
 
-Own profile; View cash register balance, View the amount of transaction, View the amount of sales revenue. (DONE)
+Own profile (view own username); View customer list and customer's current balance; View cash register balance; View transaction history; View the amount of sales revenue. (DONE)
 
 
 **Functionality in the basic version**
@@ -35,8 +35,8 @@ Own profile; View cash register balance, View the amount of transaction, View th
 
 
 2 After customer logon
-- Customer can load money to the payment card. (DONE)
-- Customer can pay purchases by using the payment card or cash. (DONE)
+- Customer can review loaded balance to the payment card, loading to be operated by storekeeper. (DONE)
+- Customer can pay purchases by using the payment card or cash, payment to be processed by storekeeper when trasaction happens. (DONE)
 - Customer can check the balance and transaction history. (DONE)
 - Customer can log out. (DONE)
 
@@ -52,6 +52,6 @@ Own profile; View cash register balance, View the amount of transaction, View th
 - A user friendly GUI. (DONE)
 - User can modify own profile (password). (DONE)
 - Customer as a User can delete own account. (DONE)
-- A user friendly dashboard to view the balance, the amount of transaction and the amount of purchases. (DONE)
+- A user friendly dashboard to view the balance, transaction history for storekeeper. (DONE)
 - Apply discounts for customers during transactions. Customer paying with the membership payment card can receive fixed percentage discounts. (DONE)
 - Transaction will be declined, if no sufficient money in card. (DONE)

@@ -1,6 +1,5 @@
-#updated based on two user roles: customer and storekeeper (admin)
-
 class User:
+    """Defind user and user roles """
     def __init__(self, user_id = None, username= "", password= "", role= "customer", balance= 0.0):
         self.user_id = user_id  #meaning "id" in DB
         self.username = username
@@ -8,8 +7,8 @@ class User:
         self.role = role  #customer or storekeeper(admin)
         self.balance = balance
 
-    def is_storekeeper(self): 
+    def is_storekeeper(self):
         return self.role == "storekeeper"
 
-    def is_customer(self): 
+    def is_customer(self):
         return self.role == "customer"
