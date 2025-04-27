@@ -206,7 +206,7 @@ Data is stored in SQLite database. Users and transactions are stored in the SQLi
 ### Files
 Files used to build up the program are structured as below
 
-
+```
 ├── src/
 │   ├── initialize_database.py        # Creates and setup initial database schema
 │   ├── database_connection.py        # Manages connections to the database
@@ -227,7 +227,7 @@ Files used to build up the program are structured as below
 │   ├── services/                     # Contains business logic
 │   │   ├── user_service.py           # User-related business operations
 │   │   └── transaction_service.py    # Transaction processing operations
-
+```
 
 ## Functionalities for future development (not in this course scope)
 Based on business demand, it is possible to add below features to enrich the program: 
