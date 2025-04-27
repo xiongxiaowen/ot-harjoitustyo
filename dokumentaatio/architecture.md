@@ -25,7 +25,7 @@ The UI consists of separate views for customers and storekeepers:
 - Storekeeper UI:
     - View profile
     - Check cash register balance
-    - View transaction amounts and sales revenue
+    - View transaction history and sales revenue
 
 
 The UI interacts with services module's classes to handle business logic.
@@ -105,7 +105,7 @@ classDiagram
     TransactionRepository --> Transaction : manages transactions
 ```
 
-Sequence diagram below
+Sequence diagram below illustrates the core functionalities
 
 
 ```mermaid
@@ -119,7 +119,7 @@ sequenceDiagram
 
 
   %% Login Process
-  User->>UI: click "Login" button
+  User->>UI: customer click "Login" button 
   UI->>UserService: login("user", "password")
   UserService->>UserRepository: find_user_by_username("user")
   UserRepository-->>UserService: user data
@@ -128,7 +128,7 @@ sequenceDiagram
 
 
   %% Create New User Process
-  User->>UI: click "Create User" button
+  User->>UI: customer click "Create User" button
   UI->>UserService: create_user("new_user", "password")
   UserService->>UserRepository: check_if_username_exists("new_user")
   UserRepository-->>UserService: No existing user
@@ -140,7 +140,7 @@ sequenceDiagram
 
   %% Transaction Process
   User->>UI: customer at store "Pay with Card"
-  UI->>TransactionService: process_payment("payment_method")
+  UI->>TransactionService: storekeeper process_payment("payment_method") apply discount
   TransactionService->>TransactionRepository: save_transaction
   TransactionRepository-->>TransactionService: transaction saved
   TransactionService-->>UI: payment processed successfully
@@ -148,7 +148,7 @@ sequenceDiagram
 
 
   %% Delete Account Process
-  User->>UI: click "Delete Account"
+  User->>UI: Customer click "Delete Account"
   UI->>UserService: delete_user("user")
   UserService->>UserRepository: remove_user("user")
   UserRepository-->>UserService: user deleted
@@ -157,7 +157,7 @@ sequenceDiagram
 
 
   %% Logout Process
-  User->>UI: click "Logout"
+  User->>UI: click "Logout" (customer & storekeeper)
   UI->>UserService: logout()
   UserService-->>UI: session terminated
   UI->>UI: redirect to login screen
@@ -181,8 +181,8 @@ sequenceDiagram
   UI->>UI: show updated balance
 
 
-  %% Storekeeper Views Transaction History
-  User->>UI: click "View Transactions"
+  %% Views Transaction History
+  User->>UI: click "View Transactions" (for both customer & storekeeper)
   UI->>TransactionService: get_transaction_history()
   TransactionService->>TransactionRepository: fetch_transaction_data()
   TransactionRepository-->>TransactionService: transaction list
@@ -191,7 +191,7 @@ sequenceDiagram
 
 
   %% Storekeeper Views Sales Revenue
-  User->>UI: click "View Sales Revenue"
+  User->>UI: storekeeper click "View Sales Revenue" (total revenue or only cash payment)
   UI->>TransactionService: get_sales_revenue()
   TransactionService->>TransactionRepository: calculate_total_revenue()
   TransactionRepository-->>TransactionService: total revenue
@@ -200,12 +200,42 @@ sequenceDiagram
 ```
 
 
-
 ## Data storage
+Data is stored in SQLite database. Users and transactions are stored in the SQLite database tables users and transactions, which are initialized in the initialize_database.py file.
+
+### Files
+Files used to build up the program are structured as below
 
 
-## Files
+├── src/
+│   ├── initialize_database.py        # Creates and setup initial database schema
+│   ├── database_connection.py        # Manages connections to the database
+│   │
+│   ├── ui/                           # Contains all user interface components
+│   │   ├── main_login_view.py        # Main login entry point
+│   │   ├── customer_view.py          # Displays the customer interface
+│   │   └── storekeeper_view.py       # Shows the storekeeper/admin interface
+│   │
+│   ├── models/                       # Defines data structures/entities
+│   │   ├── user.py                   # User model definition
+│   │   └── transaction.py            # Transaction model definition
+│   │
+│   ├── repositories/                 # Data layer, database operations
+│   │   ├── user_repository.py        # Database storage for users
+│   │   └── transaction_repository.py # Database storage for transactions
+│   │
+│   ├── services/                     # Contains business logic
+│   │   ├── user_service.py           # User-related business operations
+│   │   └── transaction_service.py    # Transaction processing operations
 
 
-## Core Functionalities
+## Functionalities for future development (not in this course scope)
+Based on business demand, it is possible to add below features to enrich the program: 
+- Based on purchased value, classify customers into various classes or levels which entitle customer various discount. 
+- Push discount or campaign notification from storekeeper to customer end based on customer class. 
+- Fancy user interface can be possible if adding more colors or graphic design elements. 
+- Customer dashboard to be integrated with bank account, allow customer load money online from bank to top up the memberhsip card, growing the balance as diposit. Balance is customer's asset.
+- Allow customer bind bank card and credit card to memberhsip payment card application, for easier toping up and grow the balance.
+- Add possible financial services for customer's balance: grant customer interests daily (reasonable interest rate) if balance reach a certain amount, e.g.>= 1k €.
+- integrate with fund and stock sales service, allow customer to purchase and manage fund and stock market investments. 
 
