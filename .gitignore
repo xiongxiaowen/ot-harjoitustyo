@@ -2,3 +2,10 @@
 __pycache__
 .coverage
 htmlcov
+
+# Database files should be ignored
+*.db
+*.sqlite
+*.db-journal
+*.sqlite-journal
+.data
