@@ -16,4 +16,4 @@ def test(c):
 
 @task
 def coverage_report(c):
-    c.run("coverage report")
+    c.run("coverage html")
