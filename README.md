@@ -26,7 +26,12 @@ The application is built to allow storekeepers and staff to offer a membership p
 
 
 **Release**
+
+
 [link to Week 5 release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases/tag/Viikko5)
+
+
+[link to Week 6 release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases/tag/Viikko5)
 
 
 **Installation**
@@ -34,10 +39,6 @@ The application is built to allow storekeepers and staff to offer a membership p
 
 Install dependencies with the command:
 - poetry install
-
-
-Perform the required initialization with the command:
-- poetry run invoke build
 
 
 Start the application with the command:
@@ -56,8 +57,8 @@ Testing are run with the command:
 
 
 Test Coverage report can be generated  with the command:
-- poetry run invoke coverage-report (The report will be generated in the htmlcov directory)
-- poetry run coverage html (view HTML report)
+- poetry run invoke coverage-report (The html report will be generated in the htmlcov directory)
+- poetry run coverage html (view HTML report via link)
 
 
 Pylint, run the checks defined in the .pylintrc file with the command:
