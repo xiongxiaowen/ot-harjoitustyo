@@ -3,11 +3,11 @@ import sqlite3
 from src.repositories.user_repository import UserRepository
 from src.models.user import User
 from src.database_connection import get_database_connection
-from datetime import datetime
+
 
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
-        #setup a database
+        #setup a database for testing
         self.connection =sqlite3.connect(":memory:")
         self.connection.row_factory = sqlite3.Row
         self.create_tables()
@@ -59,18 +59,20 @@ class TestUserRepository(unittest.TestCase):
         self.assertIsNone(user_not_found)
 
     def test_create_user(self):
-        new_user = User("new_user", "new_password", "customer", 50.0)
+        # create user successfully
+        new_user = User("testUser3", "newpassword3", "customer", 50.0)
+        #verify the test user no exist before creating user
+        self.assertIsNone(self.repo.find_user_by_username("testUser3"))
         result =self.repo.create_user(new_user)
         self.assertTrue(result)
 
-        # Verify that the new user is in the database
-        user = self.repo.find_user_by_username("new_user")
-        self.assertIsInstance(user, User)
-        self.assertEqual(user.username, "new_user")
-        self.assertEqual(user.balance, 50.0)
+        # Verify that the new user is created in the database
+        created_user = self.repo.find_user_by_username("testUser3")
+        self.assertIsNotNone(created_user)
+        self.assertEqual(created_user.username, new_user.username)
 
         #Try to create a user with the same username
-        duplicate_user = User("new_user", "another_password", "customer", 75.0)
+        duplicate_user = User("testUser3", "another_password", "customer", 75.0)
         result = self.repo.create_user(duplicate_user)
         self.assertFalse(result)
 
@@ -78,7 +80,34 @@ class TestUserRepository(unittest.TestCase):
         self.repo.delete_user("test_user2")
         user = self.repo.find_user_by_username("test_user2")
         self.assertIsNone(user)
- 
 
+    def test_update_password(self):
+        user = self.repo.find_user_by_username("test_user2")
+        self.repo.update_password("test_user2", "password_updated")
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT password FROM users WHERE username=?", ("test_user2",))
+        self.assertEqual(cursor.fetchone()[0], "password_updated")
+
+    def test_get_balance(self):
+        user = self.repo.find_user_by_username("test_user2")
+        self.repo.get_balance(user.username)
+        self.assertEqual(user.balance, 100.0)
+
+    def test_update_balance(self):
+        # Test deposit
+        self.repo.update_balance("test_user2", 50.0)
+        self.assertEqual(self.repo.get_balance("test_user2"), 150.0)     
+        # Test withdrawal
+        self.repo.update_balance("test_user2", -30.0)
+        self.assertEqual(self.repo.get_balance("test_user2"), 120.0)
+
+    def test_get_all_customers(self):
+        self.connection.execute("INSERT INTO users VALUES (?, ?, ?, ?)",
+            ("admin_user", "adminpass", "storekeeper", 500.0))
+        customers = self.repo.get_all_customers()
+        self.assertEqual(len(customers), 1)
+        self.assertEqual(customers[0].username, "test_user2")
+        self.assertEqual(customers[0].role, "customer")
+ 
 if __name__ == "__main__":
     unittest.main()

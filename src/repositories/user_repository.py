@@ -28,6 +28,7 @@ class UserRepository:
             self._connection.commit()
             return True
         except sqlite3.IntegrityError:
+            self._connection.rollback()
             return False
 
     #allow to remove a user

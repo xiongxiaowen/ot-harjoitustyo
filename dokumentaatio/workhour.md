@@ -24,12 +24,13 @@
 |15.4      |3      |continue unit testing, Coverage report shows test coverage 46%. Program tested again on Omnissa Horizon Client, working well with Cubbli Linux|
 | Week 6   |       | |
 |25.4      |3      |Function growth:  improve the keeper’s transaction history list by making User name visible on list. Week 6 release created.|
-|25.4      |3      |continue unit testing, Coverage report shows test coverage 86%. Program tested again on Omnissa Horizon Client, working well with Cubbli Linux|
+|25.4      |3      |continue unit testing. Program tested again on Omnissa Horizon Client, working well with Cubbli Linux|
 |26.4      |3      |Start documenting User Instructions and docstrings, etc.|
 |26.4      |5      |Code review, fine-tuning and fix errors. Continue writing program testing.|
 |27.4      |5      |Code review, fine-tuning and fix errors. Fine tune specification and architecture documentation.|
 |27.4      |3      |Add possible functionalities for future development|
 |27.4      |5      |Code review, fine-tuning and fix errors. Run poetry run invoke lint, code rated at 9,73/10 |
+|28.4      |10     |continue unit testing, correct errors in testing cases|
 | Week 7  |       | |
-|Total hour|  86  | |
+|Total hour|  96  | |
 
