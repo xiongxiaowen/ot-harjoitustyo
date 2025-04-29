@@ -1,10 +1,17 @@
 from invoke import task
 from src.ui.main_login_view import open_login_view
+from src.initialize_database import initialize_database
 
 @task
 def start(ctx):
     open_login_view()
 
+"""keep this for verifying DB, remove later
+@task
+def build_db(ctx):  
+    initialize_database()
+    print("Database initialized")
+"""
 
 @task
 def lint(c):

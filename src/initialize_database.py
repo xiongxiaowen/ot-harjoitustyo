@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from database_connection import get_database_connection
+from src.database_connection import get_database_connection
 
 DB_FILE = os.path.join(os.path.dirname(__file__), "membership_card.db")
 
@@ -16,7 +16,7 @@ def create_tables(connection):
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
-            password TEXT NOT NUll,
+            password TEXT NOT NULL,
             role TEXT CHECK (role IN ('customer', 'storekeeper')) NOT NULL,
             balance REAL DEFAULT 0.00
             );
