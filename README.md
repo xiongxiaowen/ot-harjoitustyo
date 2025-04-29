@@ -40,6 +40,8 @@ The application is built to allow storekeepers and staff to offer a membership p
 Install dependencies with the command:
 - poetry install
 
+Run database initialization with this command, if DB not initialized (ensure DB & tables created successfully): 
+- poetry run python src/initialize_database.py
 
 Start the application with the command:
 - poetry run invoke start
