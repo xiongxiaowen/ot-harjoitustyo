@@ -30,8 +30,8 @@ def open_storekeeper_dashboard(user):
         window.destroy()
         open_login_view()
 
-    # Transactions overvie
     def show_all_transactions():
+        """Transactions overview"""
         transactions = transaction_service.get_transaction_history()
         if not transactions:
             messagebox.showinfo("Transactions", "No transactions recorded.")
@@ -42,9 +42,9 @@ def open_storekeeper_dashboard(user):
         for tx in transactions:
             label = f"{tx['date']} - User ID {tx['user_id']} - User Name {tx['username']} - {tx['amount']} euros - {tx['payment_method']}"
             tk.Label(history_window, text=label).pack()
-
-    # Load funds to customer
+  
     def load_card_balance():
+        """Load funds to customer"""
         def submit_load():
             username = username_entry.get()
             amount_str = amount_entry.get()
@@ -69,7 +69,8 @@ def open_storekeeper_dashboard(user):
             else:
                 messagebox.showerror("Error", "Failed to load money to card.")
 
-        load_window = tk.Toplevel(window) #loading operation window on top of the Dashboard
+        """loading operation window on top of the Dashboard"""
+        load_window = tk.Toplevel(window)
         load_window.geometry("400x300")
         load_window.title("Load Money to Card")
 
@@ -84,14 +85,17 @@ def open_storekeeper_dashboard(user):
         tk.Button(load_window, text="Submit", command=submit_load).pack(pady=5)
 
     def show_total_revenue():
+        """Display total revenue, incl. both card and cash payment"""
         total = transaction_service.get_total_revenue()
         messagebox.showinfo("Total Revenue", f"Total Revenue: {total:.2f} euros")
 
     def show_cash_register_balance():
+        """Display total income by cash"""
         total = transaction_service.get_cash_register_balance()
         messagebox.showinfo("Cash Register Balance", f"Cash Register Balance: {total:.2f} euros")
 
     def process_payment():
+        """define the logic for processing payment"""
         def submit_payment():
             username = username_entry.get()
             amount_str = amount_entry.get()
@@ -120,7 +124,6 @@ def open_storekeeper_dashboard(user):
             else:
                 messagebox.showerror("Error", "Failed to execute the payment.")
 
-
         payment_window = tk.Toplevel(window)
         payment_window.title("Process Customer Payment")
         payment_window.geometry("400x300")
@@ -140,7 +143,7 @@ def open_storekeeper_dashboard(user):
 
         tk.Button(payment_window, text="Submit Payment", command=submit_payment).pack(pady=10)
 
-    # Revenue summary and cash summary
+    """Revenue summary and cash summary"""
     tk.Button(window, text="Process Payment", command=process_payment).pack(anchor="w", padx=20, pady=5)
     tk.Button(window, text="Load Money to Customer Card", command=load_card_balance).pack(anchor="w", padx=20, pady=5)
     tk.Button(window, text="View Total Revenue", command=show_total_revenue).pack(anchor="w", padx=20, pady=5)
@@ -149,7 +152,7 @@ def open_storekeeper_dashboard(user):
 
     tk.Button(window, text="Log Out", command=logout).pack(anchor="w", padx=20, pady=5)
 
-    # Display all registered customers with current balances upon admin login.
+    """Display all registered customers with current balances upon admin login."""
     customer_frame = tk.Frame(window)
     customer_frame.pack(padx=10, pady=10, anchor="w")
 

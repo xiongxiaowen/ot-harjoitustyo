@@ -2,6 +2,7 @@ from src.models.transaction import Transaction
 from src.database_connection import get_database_connection
 
 class TransactionRepository:
+    """This class build up the repository for transactions, interact with DB."""
     def __init__(self):
         self._connection = get_database_connection()
 
@@ -18,7 +19,6 @@ class TransactionRepository:
               )
         self._connection.commit()
 
-
     def get_transactions_by_username(self, username):
         """Get all transactions based on specific username."""
         cursor = self._connection.cursor()
@@ -28,7 +28,6 @@ class TransactionRepository:
             (username,)
             )
         return [{"date": row[0], "amount": row[1], "method": row[2]} for row in cursor.fetchall()]
-
 
     def get_all_transactions(self):
         """Get for admin fetch all transaction histories.

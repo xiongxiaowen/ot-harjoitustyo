@@ -26,5 +26,5 @@ class UserService:
         return self.user_repository.get_balance(username)
 
     def logout(self):
-        #Logout current user
+        """Logout current user"""
         self.current_user = None
