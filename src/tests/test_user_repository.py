@@ -60,7 +60,7 @@ class TestUserRepository(unittest.TestCase):
 
     def test_create_user(self):
         # create user successfully
-        new_user = User("testUser3", "newpassword3", "customer", 50.0)
+        new_user = User(username = "testUser3", password = "newpassword3", role = "customer", balance = 50.0)
         #verify the test user no exist before creating user
         self.assertIsNone(self.repo.find_user_by_username("testUser3"))
         result =self.repo.create_user(new_user)
@@ -102,8 +102,10 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(self.repo.get_balance("test_user2"), 120.0)
 
     def test_get_all_customers(self):
-        self.connection.execute("INSERT INTO users VALUES (?, ?, ?, ?)",
-            ("admin_user", "adminpass", "storekeeper", 500.0))
+        self.connection.execute(
+            "INSERT INTO users (username, password, role, balance) VALUES (?, ?, ?, ?)",
+            ("admin_user", "adminpass", "storekeeper", 500.0)
+            )
         customers = self.repo.get_all_customers()
         self.assertEqual(len(customers), 1)
         self.assertEqual(customers[0].username, "test_user2")

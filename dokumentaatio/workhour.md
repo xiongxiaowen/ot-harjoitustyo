@@ -32,6 +32,7 @@
 |27.4      |5      |Code review, fine-tuning and fix errors. Run poetry run invoke lint, code rated at 9,73/10 |
 |28.4      |10     |continue unit testing, correct errors in testing cases|
 |29.4      |4      |completed docstrings|
-| Week 7  |       | |
-|Total hour|  100  | |
+| Week 7   |       | |
+|3.5       |3      |correct errors in testing cases|
+|Total hour|  103  | |
 
