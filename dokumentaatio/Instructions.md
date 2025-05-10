@@ -53,6 +53,7 @@ User name is always unique, once created either with customer or storekeeper rol
 - load money to customer card.After successful loading, a pop up window with messages tells how much has been loaded to which customer. 
 ![](./pic/LoadMoney.png)
 
+
 ![](./pic/Loadsuccessful.png)
 - view total revenue including both card and cash payment types; 
 ![](./pic/TotalRevenue.png)
@@ -61,7 +62,9 @@ User name is always unique, once created either with customer or storekeeper rol
 - view all customer transactions.
 
 
-In the example, user xw got card loaded with 100€ by storekeeper, transactions of payment in cash 10€ and paid with card 9€ after discount (10€ before discount 10%) are listed in the Transactions list for storekeeper. User xw's card balance is 100-9= 91€, which is visible for storekeeper. 
+In the example, user xw got card loaded with 100€ by storekeeper, transactions of payment in cash 10€ and paid with card 9€ after discount (10€ before discount 10%) are listed in the Transactions list for storekeeper. User xw's card balance is 100-9= 91€, which is visible for storekeeper.
+
+
 ![](./pic/ReviewAllTra.png)
 
 - can log out by clicking the button of log out.
