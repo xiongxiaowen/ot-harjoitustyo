@@ -22,6 +22,9 @@ The application is built to allow storekeepers and staff to offer a membership p
 [link to Architecture Description document](dokumentaatio/architecture.md)
 
 
+[link to Testing document](dokumentaatio/Testing.md)
+
+
 [link to changelog document](dokumentaatio/changelog.md)
 
 
@@ -34,14 +37,17 @@ The application is built to allow storekeepers and staff to offer a membership p
 [link to Week 6 release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases/tag/Week6)
 
 
+[link to Week 7 Final release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases)
+
+
 **Installation**
 
 
 Install dependencies with the command:
 - poetry install
 
-Run database initialization with this command, if DB not initialized (ensure DB & tables created successfully): 
-- poetry run python src/initialize_database.py
+Run database initialization with this command (ensure DB & tables created successfully):
+- poetry run invoke build
 
 Start the application with the command:
 - poetry run invoke start
