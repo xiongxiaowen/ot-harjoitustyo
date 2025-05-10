@@ -33,6 +33,8 @@
 |28.4      |10     |continue unit testing, correct errors in testing cases|
 |29.4      |4      |completed docstrings|
 | Week 7   |       | |
-|3.5       |3      |correct errors in testing cases|
-|Total hour|  103  | |
-
+|3.5       |3      |correct errors in testing cases: line 105 & 67 errors corrected.  DB debug message removed|
+|4.5       |3      |continue unit testing. Coverage report shows test coverage 99%.|
+|5.5       |2      |Corrected all errors per Pylint hints. Document testing.|
+|10.5      |6      |Document testing and instructions files final version. Enable invoke build work in tasks.py. Test and prepare final submission.|
+|Total hour|  114 | |
