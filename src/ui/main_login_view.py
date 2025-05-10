@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 import sqlite3
-import os
 from src.services.user_service import UserService
 from src.ui.customer_view import open_customer_dashboard
 from src.ui.storekeeper_view import open_storekeeper_dashboard
@@ -22,13 +21,6 @@ def open_login_view():
         """Authenticate user login through retriving username and password from user_repository. Redirect
         user to the correct dashboard window, display error message if invalid login.
         """
-        if not os.path.exists("data/database.sqlite"):
-            messagebox.showerror(
-                "Startup Error",
-                "Database not found.\n\nPlease initialize it first:\npoetry run invoke build"
-                )
-            return
-
         username = username_entry.get()
         password = password_entry.get()
 
@@ -57,13 +49,6 @@ def open_login_view():
         """Handle registration and user account creation by generating username, password and role 
         into user_repository if no existing. Guide users to login after successful registration.
         """
-        if not os.path.exists("data/database.sqlite"):
-            messagebox.showerror(
-                "Startup Error",
-                "Database not found.\n\nPlease initialize it first with:\n\npoetry run invoke build"
-                )
-            return
-
         username = username_entry.get()
         password = password_entry.get()
         role = role_var.get().lower()
