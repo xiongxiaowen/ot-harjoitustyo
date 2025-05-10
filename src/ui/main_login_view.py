@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+import sqlite3
+import os
 from src.services.user_service import UserService
 from src.ui.customer_view import open_customer_dashboard
 from src.ui.storekeeper_view import open_storekeeper_dashboard
@@ -37,24 +39,44 @@ def open_login_view():
         """Handle registration and user account creation by generating username, password and role 
         into user_repository if no existing. Guide users to login after successful registration.
         """
+        if not os.path.exists("data/database.sqlite"):
+            messagebox.showerror(
+                "Startup Error",
+                "Database not found.\n\nPlease initialize it first with:\n\npoetry run invoke build"
+                )
+            return
+
         username = username_entry.get()
         password = password_entry.get()
         role = role_var.get().lower()
 
-        if user_repository.find_user_by_username(username):
-            messagebox.showerror("Registration Failed", "Username already exists, please try with another username") #navigate to login
+        if not username or not password:
+            messagebox.showerror("Registration Failed", "Username and password cannot be empty.")
             return
 
-        user = user_service.register(username, password, role)
-        if user:
-            messagebox.showinfo("Registration", "User registered successfully!")
+        try: 
+            if user_repository.find_user_by_username(username):
+                messagebox.showerror(
+                    "Registration Failed",
+                    "Username already exists, please try with another username") #navigate to login
+                return
+
+            user = user_service.register(username, password, role)
+            if user:
+                messagebox.showinfo("Registration", "User registered successfully!")
            
-            if role == "customer":
-                messagebox.showinfo("Registration as Customer", "Now you can log in as customer role")
+                if role == "customer":
+                    messagebox.showinfo("Registration as Customer", "Now you can log in as customer role")
+                else:
+                    messagebox.showinfo("Registration as Storekeeper", "Now you can log in as storekeeper role")
             else:
-                messagebox.showinfo("Registration as Storekeeper", "Now you can log in as storekeeper role")
-        else:
-            messagebox.showerror("Registration Failed", "Something went wrong during registration.")
+                messagebox.showerror("Registration Failed", "Something went wrong during registration.")
+
+        except sqlite3.OperationalError as e:
+            messagebox.showerror(
+                "Database Error",
+                "Error accessing the database.\n\nMake sure it’s initialized:\npoetry run invoke build"
+                )
 
 
     tk.Label(root, text="Welcome to the XX store membership card", font=("Arial", 16)).pack(pady=10)
