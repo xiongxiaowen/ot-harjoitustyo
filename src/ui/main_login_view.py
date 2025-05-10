@@ -22,18 +22,36 @@ def open_login_view():
         """Authenticate user login through retriving username and password from user_repository. Redirect
         user to the correct dashboard window, display error message if invalid login.
         """
+        if not os.path.exists("data/database.sqlite"):
+            messagebox.showerror(
+                "Startup Error",
+                "Database not found.\n\nPlease initialize it first:\npoetry run invoke build"
+                )
+            return
+
         username = username_entry.get()
         password = password_entry.get()
-        user = user_service.login(username, password)
 
-        if user:
-            root.destroy()
-            if user.is_storekeeper():
-                open_storekeeper_dashboard(user)
+        if not username or not password:
+            messagebox.showerror("Login Failed", "Username and password cannot be empty.")
+            return
+
+        try:
+            user = user_service.login(username, password)
+            if user:
+                root.destroy()
+                if user.is_storekeeper():
+                    open_storekeeper_dashboard(user)
+                else:
+                    open_customer_dashboard(user)
             else:
-                open_customer_dashboard(user)
-        else:
-            messagebox.showerror("Login Failed", "Invalid username or password.")
+                messagebox.showerror("Login Failed", "Invalid username or password.")
+
+        except sqlite3.OperationalError as e:
+            messagebox.showerror(
+                "Database Error",
+                "Error accessing the database.\n\nMake sure it’s initialized:\npoetry run invoke build"
+                )
 
     def handle_register():
         """Handle registration and user account creation by generating username, password and role 
