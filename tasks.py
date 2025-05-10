@@ -6,12 +6,10 @@ from src.initialize_database import initialize_database
 def start(ctx):
     open_login_view()
 
-"""keep this for verifying DB, remove later
 @task
-def build_db(ctx):  
+def build(ctx):  
     initialize_database()
     print("Database initialized")
-"""
 
 @task
 def lint(c):
