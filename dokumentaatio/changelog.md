@@ -21,3 +21,8 @@
 **Week 6**
 - Storekeeper dashboard: improve the keeper’s transaction history list by making customer's User name visible on list, easier to identify customer. 
 - Testing the most critical functions of this program with various values (storekeeper' Process Payment and Load Money to Customer Card operations, discount to be applied to card payment).
+
+**Week 7**
+- Add login and registration exception handling. 
+- Decided use "poetry run invoke build" to configure and intialize DB and tables. 
+- Review all functionalities, which are working per specifications. Final release made in GitHub.
