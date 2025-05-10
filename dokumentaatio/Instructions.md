@@ -5,6 +5,8 @@ Download the source code from the latest [Week 7 Final release](https://github.c
 Note: This program was developed on Windows, all commands mentioned in this program is based on Windows. Please use Linux command line if run on Linux. Program was tested every week on Omnissa Horizon Client, program can open and work well with Cubbli Linux.
 
 **Starting the program & Configuration**
+
+
 Before starting the program, install the dependencies with the command: 
 - poetry install
 
@@ -18,6 +20,8 @@ Then start the program with the command:
 
 
 **Login & Creating a new user**
+
+
 The application starts in the home page login view:
 ![](./pic/login.png)
 
@@ -47,18 +51,30 @@ User name is always unique, once created either with customer or storekeeper rol
 
 **Storekeeper's dashboard functions**
 - view registered customer list and customer's current balance (The list under the log out button); 
+
+
 - process payment: receive the payment via the payment card or cash. Apply discounts for customers during card transactions. No discounts if payment type is cash. Transaction will be declined, if no sufficient money in card.
 ![](./pic/ProcessPayment.png)
 
-- load money to customer card.After successful loading, a pop up window with messages tells how much has been loaded to which customer. 
+
+- load money to customer card.
 ![](./pic/LoadMoney.png)
 
 
+After successful loading, a pop up window with messages tells how much has been loaded to which customer. 
+
+
 ![](./pic/Loadsuccessful.png)
+
+
 - view total revenue including both card and cash payment types; 
 ![](./pic/TotalRevenue.png)
+
+
 - view cash balance (revenue via cash payment); 
 ![](./pic/ReviewCash.png)
+
+
 - view all customer transactions.
 
 
