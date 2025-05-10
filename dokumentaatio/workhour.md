@@ -37,4 +37,5 @@
 |4.5       |3      |continue unit testing. Coverage report shows test coverage 99%.|
 |5.5       |2      |Corrected all errors per Pylint hints. Document testing.|
 |10.5      |6      |Document testing and instructions files final version. Enable invoke build work in tasks.py. Test and prepare final submission.|
-|Total hour|  114 | |
+|10.5      |4      |Fine tune exception solution. Final function testing with Cubbli Linux. loppupalautus release to GitHub|
+|Total hour|  118 | |
