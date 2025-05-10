@@ -34,7 +34,7 @@ def create_tables(connection):
             """)
 
         connection.commit()
-        print("Database and tables created successfully.")
+        #use this line to verify if creation ok: print("Database and tables created successfully.")
 
 
 def initialize_database():

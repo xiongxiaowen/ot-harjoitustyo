@@ -7,6 +7,7 @@ class UserService:
     """
     def __init__(self, user_repository=None):
         self.user_repository = user_repository or UserRepository()
+        self.current_user = None
 
     def login(self, username, password):
         user = self.user_repository.find_user_by_username(username)

@@ -36,7 +36,7 @@ class UserRepository:
         cursor = self._connection.cursor()
         cursor.execute("DELETE FROM users WHERE username = ?", (username,))
         self._connection.commit()
-  
+
     def update_password(self, username, new_password):
         """update password"""
         cursor = self._connection.cursor()
