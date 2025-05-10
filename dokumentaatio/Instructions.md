@@ -58,6 +58,8 @@ User name is always unique, once created either with customer or storekeeper rol
 
 
 - load money to customer card.
+
+
 ![](./pic/LoadMoney.png)
 
 
