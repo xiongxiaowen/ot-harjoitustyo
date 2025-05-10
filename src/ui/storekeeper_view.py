@@ -100,6 +100,8 @@ def open_storekeeper_dashboard(user):
             username = username_entry.get()
             amount_str = amount_entry.get()
             method = payment_method.get()
+            balance = user_service.get_balance(username)
+            discount = 0.1 #Pay with membership card gets 10% discount
 
             if not username or not amount_str or not method:
                 messagebox.showerror("Error", "Please fill all fields.")
@@ -115,6 +117,11 @@ def open_storekeeper_dashboard(user):
             customer = user_repository.find_user_by_username(username)
             if not customer:
                 messagebox.showerror("Error", "Customer not found.")
+                return
+
+            final_amount = amount * (1 - discount) if method == "card" else amount
+            if method == "card" and final_amount > balance:
+                messagebox.showerror("Error", "Not enough balance on card.")
                 return
 
             success = transaction_service.process_payment(username, amount, method)
