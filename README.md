@@ -37,7 +37,7 @@ The application is built to allow storekeepers and staff to offer a membership p
 [link to Week 6 release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases/tag/Week6)
 
 
-[link to Week 7 Final release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases)
+[link to Week 7 Final release](https://github.com/xiongxiaowen/ot-harjoitustyo/releases/tag/Week7)
 
 
 **Installation**
